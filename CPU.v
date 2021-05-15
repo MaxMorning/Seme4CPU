@@ -8,9 +8,10 @@ module CPU (
     input wire[31:0] dataIn,
     output wire[31:0] dAddr,
     output wire[31:0] dataOut,
-    output wire DRAMwe
+    output wire DRAMwe,
+    output wire[31:0] pc_out
 );
-    wire[31:0] pc_out;
+    // wire[31:0] pc_out;
     wire[31:0] pc_in;
     // wire[31:0] inst;
     wire[4:0] rs;
