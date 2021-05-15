@@ -6,6 +6,6 @@ module IRAM (
 
     reg[31:0] inst_array[63:0];
 
-    assign inst = inst_array[addr[5:0]];
+    assign inst = inst_array[addr[7:2]];
     
 endmodule
