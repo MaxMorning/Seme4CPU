@@ -73,7 +73,7 @@ module CPU (
 
     assign iAddr = pc_out;
     assign dAddr = ALUResult;
-    assign dataOut = rt;
+    assign dataOut = rdata2;
 
     PC pc_inst(
         .clk(clk),

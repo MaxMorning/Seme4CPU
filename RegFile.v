@@ -14,9 +14,10 @@ module RegFile (
     assign rdata1 = array_reg[raddr1];
     assign rdata2 = array_reg[raddr2];
 
+    integer i;
     always @(posedge clk) begin
         if (reset) begin
-            for (integer i = 0; i < 32; i += 1) begin
+            for (i = 0; i < 32; i = i + 1) begin
                 array_reg[i] <= 32'h0;
             end
         end

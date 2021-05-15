@@ -4,5 +4,5 @@ module Concatenate (
 
     output wire[31:0] Jconcatenate
 );
-    assign Jimm = {pc[31:28], Jimm, 2'b00};
+    assign Jconcatenate = {pc[31:28], Jimm, 2'b00};
 endmodule
