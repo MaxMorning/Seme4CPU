@@ -22,7 +22,9 @@ if __name__ == '__main__':
     os.system(r'vlog "sccomp_dataflow.v"')
     os.system(r'vlog "./tb/soc_tb.v"')
 
+    print("Compile Done!")
     file_names = os.listdir(hex_path)
+    print(file_names)
     is_wrong = False
     for file_name in file_names:
         if file_name[-4:] == ".txt":

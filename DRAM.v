@@ -6,8 +6,8 @@ module DRAM (
     
     output wire[31:0] rdata
 );
-    reg[31:0] data_array[63:0];
-    assign rdata = data_array[addr[7:2]];
+    reg[31:0] data_array[255:0];
+    assign rdata = data_array[addr[9:2]];
 
     always @(negedge clk) begin
         if (we) begin

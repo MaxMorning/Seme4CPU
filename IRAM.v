@@ -4,8 +4,8 @@ module IRAM (
     output wire[31:0] inst
 );
 
-    reg[31:0] inst_array[63:0];
+    reg[31:0] inst_array[255:0];
 
-    assign inst = inst_array[addr[7:2]];
+    assign inst = inst_array[addr[9:2]];
     
 endmodule
