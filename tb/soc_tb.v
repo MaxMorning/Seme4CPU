@@ -24,9 +24,9 @@ module soc_tb();
     end
 
     initial begin
-        $readmemh("G:/FTP/TransTemp/MIPS31/HEX/_1_addi.txt", soc.iram_inst.inst_array);
+        $readmemh("G:/FTP/TransTemp/MIPS31/WORKSPACE/instr.txt", soc.iram_inst.inst_array);
         $readmemh("G:/FTP/TransTemp/MIPS31/DRAM.txt", soc.dram_inst.data_array);
-        fout = $fopen("G:/FTP/TransTemp/MIPS31/RES/_1_addi.txt", "w+");
+        fout = $fopen("G:/FTP/TransTemp/MIPS31/WORKSPACE/result.txt", "w+");
         #3
         reset = 1;
         #3

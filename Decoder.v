@@ -64,7 +64,7 @@ module Decoder (
 
     assign GPRwe = ~(~inst[29] & ~inst[28] & ~inst[27] & ~inst[26] & ~inst[5] & inst[3]) | (inst[31] & inst[29] & ~inst[28] & inst[27] & inst[26]) | (~inst[31] & ~inst[29] & inst[28] & ~inst[27]);
 
-    assign ALUBSrc = (~inst[29] & ~inst[28] & ~inst[27] & ~inst[26] & ~inst[5] & ~inst[3] & ~inst[2]) | (inst[29] & ~inst[28] | inst[29] & ~inst[27] | inst[29] & ~inst[26] | inst[31]);
+    assign ALUBSrc = (~inst[29] & ~inst[28] & ~inst[27] & ~inst[26] & ~inst[5] & ~inst[3] & ~inst[2]) | (inst[29] | inst[31]);
     assign DRAMwe = inst[31] & inst[29];
 
     assign WBSrc[1] = ~inst[31] & ~inst[29] & ~inst[28] & inst[27] & inst[26];
