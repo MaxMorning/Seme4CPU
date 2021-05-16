@@ -9,7 +9,8 @@ module CPU (
     output wire[31:0] dAddr,
     output wire[31:0] dataOut,
     output wire DRAMwe,
-    output wire[31:0] pc_out
+    output wire[31:0] pc_out,
+    output wire interruption
 );
     // wire[31:0] pc_out;
     wire[31:0] pc_in;
@@ -76,6 +77,7 @@ module CPU (
     assign dAddr = ALUResult;
     assign dataOut = rdata2;
 
+    assign interruption = overflow;
     PC pc_inst(
         .clk(clk),
         .pc_in(pc_in),
