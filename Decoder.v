@@ -13,6 +13,7 @@ module Decoder (
     output wire[1:0] RegDst,
     output wire[1:0] ExtSelect,
     output wire GPRwe,
+    output wire ALUASrc,
     output wire ALUBSrc,
     output wire DRAMwe,
     output wire[1:0] WBSrc
@@ -45,7 +46,7 @@ module Decoder (
                                 (inst[27] ? // 001x
                                     {2'b00, inst[27:26]} : // 000x
                                     // (inst[26] ? 4'b1011 : 4'b1010) : //0011 jal   0010 j
-                                    (inst[26] ? 4'b0001 : inst[5] ^ {inst[3], inst[5] & inst[2], inst[1:0]}) //0001 NA   0000 R type
+                                    (inst[26] ? 4'b0001 : {4{inst[5]}} ~^ {inst[3], inst[5] & inst[2], inst[1:0]}) //0001 NA   0000 R type
                                 )
                             )
                         );
@@ -62,11 +63,13 @@ module Decoder (
     assign ExtSelect[1] = (~inst[29] & ~inst[28] & ~inst[27] & ~inst[26]) | (~inst[31] & ~inst[29] & inst[28] & ~inst[27]);
     assign ExtSelect[0] = inst[29] ^ inst[28];
 
-    assign GPRwe = ~(~inst[29] & ~inst[28] & ~inst[27] & ~inst[26] & ~inst[5] & inst[3]) | (inst[31] & inst[29] & ~inst[28] & inst[27] & inst[26]) | (~inst[31] & ~inst[29] & inst[28] & ~inst[27]);
+    assign GPRwe = ~((~inst[29] & ~inst[28] & ~inst[27] & ~inst[26] & ~inst[5] & inst[3]) | (inst[31] & inst[29] & ~inst[28] & inst[27] & inst[26]) | (~inst[31] & ~inst[29] & inst[28] & ~inst[27]) | (~inst[31] & ~inst[29] & ~inst[28] & inst[27] & ~inst[26]));
 
-    assign ALUBSrc = (~inst[29] & ~inst[28] & ~inst[27] & ~inst[26] & ~inst[5] & ~inst[3] & ~inst[2]) | (inst[29] | inst[31]);
+    assign ALUASrc = ~inst[29] & ~inst[28] & ~inst[27] & ~inst[26] & ~inst[5] & ~inst[2];
+    assign ALUBSrc = (inst[29] | inst[31]);
     assign DRAMwe = inst[31] & inst[29];
 
     assign WBSrc[1] = ~inst[31] & ~inst[29] & ~inst[28] & inst[27] & inst[26];
-    assign WBSrc[0] = ~inst[29] & ~inst[28] & inst[27] & inst[26];
+    // assign WBSrc[0] = ~inst[29] & ~inst[28] & inst[27] & inst[26];
+    assign WBSrc[0] = inst[29] | inst[28] | ~inst[27] | ~inst[26];
 endmodule

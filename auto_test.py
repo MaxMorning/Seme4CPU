@@ -36,7 +36,7 @@ if __name__ == '__main__':
                     file_dst.write(file_content)
 
             # start simulation
-            os.system(r'vsim -c -t 1ps -lib work soc_tb -do "run 1000ns;quit -sim;quit;"')
+            os.system(r'vsim -c -t 1ps -lib work soc_tb -do "run 4000ns;quit -sim;quit;"')
             # os.system(r'quit -sim')
             # os.system(r'quit')
 

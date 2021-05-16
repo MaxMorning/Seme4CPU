@@ -20,14 +20,14 @@ module ALU (
     wire[31:0] andResult = opr1 & opr2;
     wire[31:0] orResult = opr1 | opr2;
     wire[31:0] xorResult = opr1 ^ opr2;
-    wire[31:0] norResult = opr1 ^~ opr2;
+    wire[31:0] norResult = ~(opr1 | opr2);
 
     wire[31:0] sltResult = $signed(opr1) < $signed(opr2) ? 32'h1 : 32'h0;
     wire[31:0] sltuResult = opr1 < opr2 ? 32'h1 : 32'h0;
 
-    wire[31:0] sllResult = opr1 << opr2;
-    wire[31:0] srlResult = opr1 >> opr2;
-    wire[31:0] sraResult = ($signed(opr1)) >> opr2;
+    wire[31:0] sllResult = opr2 << opr1;
+    wire[31:0] srlResult = opr2 >> opr1;
+    wire[31:0] sraResult = ({32{opr2[31]}} << (32 - opr1)) | (opr2 >> opr1);
 
     wire[31:0] luiResult = {opr2[15:0], 16'h0};
 
@@ -62,5 +62,5 @@ module ALU (
                                 )
                             );
     assign overflow = ALUControl[3] | ALUControl[2] | ALUControl[0] ? 1'b0 : (ALUControl[1] ? subResult[32] ^ subResult[31] : addResult[32] ^ addResult[31]);
-    assign zero = | ALUResult;
+    assign zero = ~(| ALUResult);
 endmodule

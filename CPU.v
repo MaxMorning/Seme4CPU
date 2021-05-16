@@ -26,6 +26,7 @@ module CPU (
     wire[1:0] RegDst;
     wire[1:0] ExtSelect;
     wire GPRwe;
+    wire ALUASrc;
     wire ALUBSrc;
     // wire DRAMwe;
     wire[1:0] WBSrc;
@@ -45,6 +46,7 @@ module CPU (
 
     wire[4:0] GPRwaddr;
 
+    wire[31:0] ALUA;
     wire[31:0] ALUB;
     wire[31:0] rdata1;
     wire[31:0] rdata2;
@@ -65,12 +67,13 @@ module CPU (
                             : // 01 00
                             (RegDst[0] ? rd : rt);
 
+    assign ALUA = ALUASrc ? extResult : rdata1;
     assign ALUB = ALUBSrc ? extResult : rdata2;
 
     assign WBdata = WBSrc[1] ? // 11 10
                         pc4
                         :
-                        (WBSrc[0] ? dataIn : ALUResult);
+                        (WBSrc[0] ? ALUResult : dataIn);
 
 
     assign iAddr = pc_out;
@@ -98,6 +101,7 @@ module CPU (
         .RegDst(RegDst),
         .ExtSelect(ExtSelect),
         .GPRwe(GPRwe),
+        .ALUASrc(ALUASrc),
         .ALUBSrc(ALUBSrc),
         .DRAMwe(DRAMwe),
         .WBSrc(WBSrc)
@@ -116,7 +120,7 @@ module CPU (
     );
 
     ALU ALU_inst(
-        .opr1(rdata1),
+        .opr1(ALUA),
         .opr2(ALUB),
         .ALUControl(ALUControl),
         .ALUResult(ALUResult),

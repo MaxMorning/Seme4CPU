@@ -11,7 +11,7 @@ module DRAM (
 
     always @(negedge clk) begin
         if (we) begin
-            data_array[addr[5:0]] <= wdata;
+            data_array[addr[9:2]] <= wdata;
         end
     end
 endmodule

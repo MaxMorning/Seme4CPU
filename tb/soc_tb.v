@@ -35,7 +35,7 @@ module soc_tb();
         #6;
         forever begin
             
-            $fdisplay(fout, "pc: %h", pc + 32'h00400000);
+            $fdisplay(fout, "pc: %h", pc);
             $fdisplay(fout, "instr: %h", inst);
 
             for (i = 0; i < 32; i = i + 1) begin

@@ -6,7 +6,7 @@ module ImmExt (
 );
 
     assign extResult = ExtSelect[1] ?
-                        (ExtSelect[0] ? {{14{Imm16[15]}}, Imm16, 2'b00} : {27'h0, Imm16[4:0]})
+                        (ExtSelect[0] ? {{14{Imm16[15]}}, Imm16, 2'b00} : {27'h0, Imm16[10:6]})
                         : // signed / unsigned extension
                         {{16{ExtSelect[0] & Imm16[15]}} , Imm16};
 endmodule
