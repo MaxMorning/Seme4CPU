@@ -27,7 +27,8 @@ module ALU (
 
     wire[31:0] sllResult = opr2 << opr1;
     wire[31:0] srlResult = opr2 >> opr1;
-    wire[31:0] sraResult = ({32{opr2[31]}} << (32 - opr1)) | (opr2 >> opr1);
+    wire[31:0] sraResult = opr2[31] ? (~(32'hffffffff >> opr1) | (opr2 >> opr1)) : opr2 >> opr1;
+    // wire[31:0] sraResult = ({32{opr2[31]}} << (32 - opr1)) | (opr2 >> opr1);
 
     wire[31:0] luiResult = {opr2[15:0], 16'h0};
 
