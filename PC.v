@@ -6,7 +6,7 @@ module PC (
     output reg[31:0] pc_out
 );
     
-    always @(posedge clk) begin
+    always @(posedge clk or posedge reset) begin
         if (reset) begin
             pc_out <= 32'h00400000;
         end
