@@ -25,8 +25,8 @@ module sccomp_dataflow (
     );
 
     IRAM iram_inst(
-        .addr(iAddr_cpu_iram),
-        .inst(inst_iram_cpu)
+        .a(iAddr_cpu_iram[12:2]),
+        .spo(inst_iram_cpu)
     );
 
     DRAM dram_inst(

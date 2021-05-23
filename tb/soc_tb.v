@@ -24,7 +24,7 @@ module soc_tb();
     end
 
     initial begin
-        $readmemh("G:/FTP/TransTemp/MIPS31/WORKSPACE/instr.txt", soc.iram_inst.inst_array);
+//        $readmemh("G:/FTP/TransTemp/MIPS31/WORKSPACE/instr.txt", soc.iram_inst.inst_array);
         $readmemh("G:/FTP/TransTemp/MIPS31/DRAM.txt", soc.dram_inst.data_array);
         fout = $fopen("G:/FTP/TransTemp/MIPS31/WORKSPACE/result.txt", "w+");
         #3
@@ -42,35 +42,7 @@ module soc_tb();
                 $fdisplay(fout, "regfile%d: %h", i, soc.sccpu.cpu_ref.array_reg[i]);
             end
             #10;
-            // $fdisplay(file_output, "REG0 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG1 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG2 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG3 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG4 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG5 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG6 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG7 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG8 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG9 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG10 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG11 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG12 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG13 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG14 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG15 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG16 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG17 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG0 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG0 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG0 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG0 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG0 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG0 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG0 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG0 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG0 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG0 : %h", soc.sccpu.cpu_ref.array_reg[0]);
-            // $fdisplay(file_output, "REG0 : %h", soc.sccpu.cpu_ref.array_reg[0]);
+            
         end
         $fclose(fout);
 
