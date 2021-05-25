@@ -9,7 +9,7 @@ module DRAM (
     reg[31:0] data_array[255:0];
     assign rdata = data_array[addr[9:2]];
 
-    always @(negedge clk) begin
+    always @(posedge clk) begin
         if (we) begin
             data_array[addr[9:2]] <= wdata;
         end
