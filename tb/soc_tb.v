@@ -7,7 +7,6 @@ module soc_tb();
 
     integer fout;
     integer i;
-//    string file_output = "G:/FTP/TransTemp/MIPS31/RES/_1_addi.txt";
 
     wire[31:0] a_0;
     wire[31:0] a_1;
@@ -62,7 +61,6 @@ module soc_tb();
             
         end
         $fclose(fout);
-
     end
     
 endmodule
