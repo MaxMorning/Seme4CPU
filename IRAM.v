@@ -1,11 +1,11 @@
 module IRAM (
-    input wire[31:0] addr,
+    input wire[31:0] a,
 
-    output wire[31:0] inst
+    output wire[31:0] spo
 );
 
     reg[31:0] inst_array[255:0];
 
-    assign inst = inst_array[addr[9:2]];
+    assign spo = inst_array[a[9:2]];
     
 endmodule
