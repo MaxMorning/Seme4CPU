@@ -6,6 +6,6 @@ module IRAM (
 
     reg[31:0] inst_array[255:0];
 
-    assign spo = inst_array[a[9:2]];
+    assign spo = inst_array[a[7:0]];
     
 endmodule
